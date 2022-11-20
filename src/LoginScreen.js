@@ -14,7 +14,7 @@ export default function LoginScreen() {
 
     function sendRequest(event){
         event.preventDefault();
-        const request = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
+        const request = axios.post("",
         {
             email: email,
             password:password

@@ -4,6 +4,7 @@ import GlobalStyle from "./assets/styles/GlobalStyle";
 import LoginScreen from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";
 import { UserInfoContext} from "./assets/contexts/UserInfoContext";
+import HomeScreen from "./HomeScreen";
 
 export default function App(){
     const [userInfo,setUserInfo] = useState({})
@@ -15,6 +16,7 @@ export default function App(){
         <GlobalStyle/>
         <Routes>
         <Route path="/" element={<LoginScreen/>}></Route>
+        <Route path="/sign-up" element={<SignUpScreen/>}></Route>
         <Route path="/home" element={<HomeScreen/>}></Route>
         </Routes>
         </BrowserRouter>
