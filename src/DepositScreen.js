@@ -5,6 +5,7 @@ import { useState,useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { UserInfoContext } from './assets/contexts/UserInfoContext';
 
 export default function DepositScreen(){
     const {userInfo} = useContext(UserInfoContext)
@@ -12,18 +13,22 @@ export default function DepositScreen(){
     const[value, setValue] = useState();
     const[description, setDescription] = useState();
     const config = {headers : {name:name }}
+    const navigate = useNavigate();
     function sendRequest(e){
         e.preventDefault();
-        axios.post("http://localhost:5000/deposit",
+        const request = axios.post("http://localhost:5000/deposit",
         {
             value:value,
             description:description
         },config)
+        request.then((promise)=>{
+            navigate("/home")
+        })
     }
     return(
         <StyledDeposit>
             <nav><h1>Nova entrada</h1></nav>
-            <input placeholder='Valor' value={value} onChange={e=>setValue(e.target.value)}></input>
+            <input type="number" placeholder='Valor' value={value} onChange={e=>setValue(e.target.value)}></input>
             <input placeholder='Descricao' value={description} onChange={e=>setDescription(e.target.value)}></input>
             <button type='submit' onClick={e => sendRequest(e)}>Salvar entrada</button>
         </StyledDeposit>

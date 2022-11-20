@@ -13,18 +13,22 @@ export default function WithdrawScreen(){
     const[value, setValue] = useState();
     const[description, setDescription] = useState();
     const config = {headers : {name:name }}
+    const navigate = useNavigate();
     function sendRequest(e){
         e.preventDefault();
-        axios.post("http://localhost:5000/withdraw",
+        const request = axios.post("http://localhost:5000/withdraw",
         {
             value:value,
             description:description
         },config)
+        request.then((promise)=>{
+            navigate("/home")
+        })
     }
     return(
         <StyledWithdraw>
             <nav><h1>Nova saida</h1></nav>
-            <input placeholder='Valor' value={value} onChange={e=>setValue(e.target.value)}></input>
+            <input type="number" placeholder='Valor' value={value} onChange={e=>setValue(e.target.value)}></input>
             <input placeholder='Descricao' value={description} onChange={e=>setDescription(e.target.value)}></input>
             <button type='submit' onClick={e => sendRequest(e)}>Salvar saida</button>
         </StyledWithdraw>
