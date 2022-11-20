@@ -10,9 +10,7 @@ import { UserInfoContext } from './assets/contexts/UserInfoContext';
 
 export default function HomeScreen(){
     const {userInfo} = useContext(UserInfoContext);
-    console.log(userInfo)
     const name = userInfo.name;
-    console.log(name)
     const [info, setInfo] = useState([])
     const config = {headers: {name:name}}
     useEffect(() => {
