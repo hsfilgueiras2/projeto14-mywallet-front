@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import { UserInfoContext } from './assets/contexts/UserInfoContext';
 
 export default function LoginScreen() {
+    const { setUserInfo } = useContext(UserInfoContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate =useNavigate();
 
     function sendRequest(event){
         event.preventDefault();
-        const request = axios.post("",
+        const request = axios.post("http://localhost:5000/login",
         {
             email: email,
             password:password
@@ -24,6 +25,10 @@ export default function LoginScreen() {
     }
 
     function handleResponse(response){
+        console.log(response)
+        const name = response.data.name
+        setUserInfo({name:name});
+        console.log(name)
         navigate('/home');
     }
 

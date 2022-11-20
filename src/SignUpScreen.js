@@ -15,7 +15,7 @@ export default function SignUpScreen(){
 
         e.preventDefault();
         if(password == confirmPassword){
-            const registration = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",
+            const registration = axios.post("http://localhost:5000/signUp",
             {
                 name:name,
                 email:email,
